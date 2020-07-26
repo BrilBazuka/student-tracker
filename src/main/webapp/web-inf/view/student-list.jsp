@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -12,9 +11,9 @@
 </head>
 <body>
 <div class="container">
-    <h3>Student list</h3>
+    <h3>Student directory</h3>
     <hr/>
-    <a href="/students/showFormForAdd" class="btn btn-primary btn-sm mb-3">Add student</a>
+    <a href="${pageContext.request.contextPath}/student/showFormForAdd" class="btn btn-primary btn-sm mb-3">Add student</a>
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>
