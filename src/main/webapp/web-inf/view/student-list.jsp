@@ -14,6 +14,7 @@
 <div class="container">
     <h3>Student list</h3>
     <hr/>
+    <a href="/students/showFormForAdd" class="btn btn-primary btn-sm mb-3">Add student</a>
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>
