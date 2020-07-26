@@ -53,4 +53,9 @@ public class StudentController {
         return "update-student-form";
     }
 
+    @GetMapping("/deleteStudent")
+    public String deleteStudent(@RequestParam("studentId") int id) {
+        studentService.deleteStudent(id);
+        return "redirect:/student/list";
+    }
 }
