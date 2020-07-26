@@ -18,4 +18,6 @@ public interface IStudentService {
     void deleteStudent(int id);
 
     Student getStudentById(int id);
+
+    List<Student> searchStudents(String name);
 }

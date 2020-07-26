@@ -58,4 +58,11 @@ public class StudentController {
         studentService.deleteStudent(id);
         return "redirect:/student/list";
     }
+
+    @GetMapping("/search")
+    public String search(@ModelAttribute("searchName") String name, Model model) {
+        List<Student> students = studentService.searchStudents(name);
+        model.addAttribute("students", students);
+        return "student-list";
+    }
 }

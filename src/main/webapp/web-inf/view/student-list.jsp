@@ -1,5 +1,6 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
 <head>
@@ -15,6 +16,11 @@
     <hr/>
     <a href="${pageContext.request.contextPath}/student/showFormForAdd" class="btn btn-primary btn-sm mb-3">Add
         student</a>
+    <form:form action="/student/search" method="GET">
+        <label for="searchName">Search name:</label>
+        <input id="searchName" type="text" name="searchName">
+        <input type="submit" value="Search" class="btn btn-primary">
+    </form:form>
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>
@@ -45,6 +51,9 @@
         </c:forEach>
         </tbody>
     </table>
+    <c:if test="${!empty searchName}">
+        <a href="${pageContext.request.contextPath}/student/list">Back to all students</a>
+    </c:if>
 </div>
 </body>
 </html>

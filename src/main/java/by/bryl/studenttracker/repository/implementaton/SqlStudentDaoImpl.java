@@ -57,4 +57,12 @@ public class SqlStudentDaoImpl implements IStudentDao {
 
         return session.get(Student.class, id);
     }
+
+    @Override
+    public List<Student> searchStudents(String name) {
+        Session session = entityManager.unwrap(Session.class);
+        Query<Student> query = session.createQuery("from Student where lower(firstName) like :name or lower(lastName) like :name", Student.class);
+        query.setParameter("name", "%" + name.toLowerCase() + "%");
+        return query.getResultList();
+    }
 }
