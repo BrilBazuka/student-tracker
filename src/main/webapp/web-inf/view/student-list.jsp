@@ -13,21 +13,29 @@
 <div class="container">
     <h3>Student directory</h3>
     <hr/>
-    <a href="${pageContext.request.contextPath}/student/showFormForAdd" class="btn btn-primary btn-sm mb-3">Add student</a>
+    <a href="${pageContext.request.contextPath}/student/showFormForAdd" class="btn btn-primary btn-sm mb-3">Add
+        student</a>
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>
             <th>First name</th>
             <th>Last name</th>
             <th>Email</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
         <c:forEach var="tempStudent" items="${students}">
+            <c:url var="updateLink" value="/student/showFormForUpdate">
+                <c:param name="studentId" value="${tempStudent.id}"/>
+            </c:url>
             <tr>
                 <td>${tempStudent.firstName}</td>
                 <td>${tempStudent.lastName}</td>
                 <td>${tempStudent.email}</td>
+                <td>
+                    <a href="${updateLink}" class="btn btn-info btn-sm">Update</a>
+                </td>
             </tr>
         </c:forEach>
         </tbody>
