@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Simple JavaBean object that represents a Student
@@ -21,12 +24,19 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotNull(message = "is required")
+    @Size(min = 2, max = 45, message = "filed should be 2-45 characters length")
     @Column(name = "first_name")
     private String firstName;
 
+    @NotNull(message = "is required")
+    @Size(min = 2, max = 45, message = "filed should be 2-45 characters length")
     @Column(name = "last_name")
     private String lastName;
 
+    @Email(message = "email is not valid")
+    @NotNull(message = "is required")
+    @Size(max = 45, message = "filed should not be longer than 45 characters")
     @Column(name = "email")
     private String email;
 

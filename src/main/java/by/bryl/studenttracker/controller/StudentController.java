@@ -3,10 +3,14 @@ package by.bryl.studenttracker.controller;
 import by.bryl.studenttracker.entity.Student;
 import by.bryl.studenttracker.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -20,6 +24,13 @@ import java.util.List;
 public class StudentController {
 
     private IStudentService studentService;
+
+    // removes leading and trailing whitespace
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder) {
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+    }
 
     @Autowired
     public StudentController(IStudentService studentService) {
@@ -41,9 +52,13 @@ public class StudentController {
     }
 
     @PostMapping("/addStudent")
-    public String addStudent(@ModelAttribute("student") Student student) {
-        studentService.save(student);
-        return "redirect:/student/list";
+    public String addStudent(@Valid @ModelAttribute("student") Student student, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return student.getId() != 0 ? "update-student-form" : "add-student-form";
+        } else {
+            studentService.save(student);
+            return "redirect:/student/list";
+        }
     }
 
     @GetMapping("/showFormForUpdate")
