@@ -3,10 +3,11 @@
 <html>
 <head>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
 
     <title>Update Student</title>
+
 </head>
 <body>
 <div class="container">
@@ -15,13 +16,17 @@
     <p class="h4 mb-4">Update Student</p>
     <form:form action="/student/addStudent" modelAttribute="student" method="POST">
         <form:hidden path="id"/>
-        <label for="firstName">First Name:</label>
-        <form:input path="firstName" class="form-control mb-4 col-4"/>
-        <label for="lastName">Last Name:</label>
-        <form:input path="lastName" class="form-control mb-4 col-4"/>
-        <label for="email">Email</label></td>
-        <form:input path="email" class="form-control mb-4 col-4"/>
-        <input type="submit" value="Update student" class="btn btn-info col-2"/>
+        <p class="mb-1"><label for="firstName">First Name:</label></p>
+        <form:input path="firstName" placeholder="First name" class="form-control mb-2 col-4"/>
+        <form:errors path="firstName" cssClass="error"/>
+        <p class="mb-1"><label for="lastName">Last Name:</label></p>
+        <form:input path="lastName" placeholder="First name" class="form-control mb-2 col-4"/>
+        <form:errors path="lastName" cssClass="error"/>
+        <p class="mb-1"><label for="email">Email</label></p>
+        <form:input path="email" placeholder="First name" class="form-control mb-2 col-4"/>
+        <form:errors path="email" cssClass="error"/>
+        <br>
+        <input type="submit" value="Save" class="btn btn-info col-2"/>
     </form:form>
     <hr>
     <a href="${pageContext.request.contextPath}/student/list">Back to all students</a>
