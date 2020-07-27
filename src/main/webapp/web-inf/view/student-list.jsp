@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="container">
-    <h3>Student directory</h3>
+    <h3>Student Directory</h3>
     <hr/>
     <a href="${pageContext.request.contextPath}/student/showFormForAdd" class="btn btn-primary btn-sm mb-3">Add
         student</a>

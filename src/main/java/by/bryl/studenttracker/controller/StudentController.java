@@ -51,8 +51,8 @@ public class StudentController {
         return "add-student-form";
     }
 
-    @PostMapping("/addStudent")
-    public String addStudent(@Valid @ModelAttribute("student") Student student, BindingResult bindingResult) {
+    @PostMapping("/saveStudent")
+    public String saveStudent(@Valid @ModelAttribute("student") Student student, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return student.getId() != 0 ? "update-student-form" : "add-student-form";
         } else {

@@ -13,7 +13,7 @@
     <h3>Student Directory</h3>
     <hr/>
     <p class="h4 mb-4">Add Student</p>
-    <form:form action="/student/addStudent" modelAttribute="student" method="POST">
+    <form:form action="/student/saveStudent" modelAttribute="student" method="POST">
         <p class="mb-1"><label for="firstName">First Name:</label></p>
         <form:input path="firstName" placeholder="First name" class="form-control mb-2 col-4"/>
         <form:errors path="firstName" cssClass="error"/>
