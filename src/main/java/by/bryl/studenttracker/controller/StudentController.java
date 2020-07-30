@@ -69,6 +69,9 @@ public class StudentController {
     @GetMapping("/showFormForUpdate")
     public String showFormForUpdate(@RequestParam("studentId") int id, Model model) {
         Student student = studentService.getStudentById(id);
+        if (student == null) {
+            return "error/400";
+        }
         model.addAttribute("student", student);
         return "update-student-form";
     }
