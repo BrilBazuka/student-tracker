@@ -41,9 +41,13 @@ public class StudentServiceImpl implements IStudentService {
     @Override
     @Transactional
     public void save(Student student) {
-        LOGGER.info("Trying to save student " + student);
+        if(student.getId() == 0) {
+            LOGGER.info("Trying to save student " + student);
+        } else {
+            LOGGER.info("Trying to update student to " + student);
+        }
         studentDao.save(student);
-        LOGGER.info("Student " + student + " has been successfully saved");
+        LOGGER.info("Student " + student + " has been successfully saved/updated");
     }
 
     @Override
