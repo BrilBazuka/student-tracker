@@ -17,5 +17,5 @@ That's a simple CRUD application with one entity - *Student*, that allows to lis
 * Maven
 
 **View:**
-JSP
-Bootstrap
+* JSP
+* Bootstrap
