@@ -1,6 +1,7 @@
 package by.bryl.studenttracker.service.implementation;
 
 import by.bryl.studenttracker.entity.Student;
+import by.bryl.studenttracker.exception.ServiceException;
 import by.bryl.studenttracker.repository.IStudentDao;
 import by.bryl.studenttracker.service.IStudentService;
 import org.slf4j.Logger;
@@ -60,9 +61,14 @@ public class StudentServiceImpl implements IStudentService {
 
     @Override
     @Transactional
-    public Student getStudentById(int id) {
+    public Student getStudentById(int id) throws ServiceException{
         LOGGER.info("Trying to get student with id " + id);
         Student student = studentDao.getStudentById(id);
+        if (student == null) {
+            ServiceException exc = new ServiceException("Student with id " + id + " not found");
+            LOGGER.error("Student not found", exc);
+            throw exc;
+        }
         LOGGER.info("Got student " + student + " from a database");
         return student;
     }

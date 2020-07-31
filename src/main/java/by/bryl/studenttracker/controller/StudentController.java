@@ -1,6 +1,7 @@
 package by.bryl.studenttracker.controller;
 
 import by.bryl.studenttracker.entity.Student;
+import by.bryl.studenttracker.exception.ServiceException;
 import by.bryl.studenttracker.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -68,9 +69,11 @@ public class StudentController {
 
     @GetMapping("/showFormForUpdate")
     public String showFormForUpdate(@RequestParam("studentId") int id, Model model) {
-        Student student = studentService.getStudentById(id);
-        if (student == null) {
-            return "error/400";
+        Student student = null;
+        try {
+            student = studentService.getStudentById(id);
+        } catch (ServiceException e) {
+            return "error/404";
         }
         model.addAttribute("student", student);
         return "update-student-form";

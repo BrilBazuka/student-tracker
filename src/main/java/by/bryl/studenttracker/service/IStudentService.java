@@ -1,6 +1,7 @@
 package by.bryl.studenttracker.service;
 
 import by.bryl.studenttracker.entity.Student;
+import by.bryl.studenttracker.exception.ServiceException;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public interface IStudentService {
 
     void deleteStudent(int id);
 
-    Student getStudentById(int id);
+    Student getStudentById(int id) throws ServiceException;
 
     List<Student> searchStudents(String name);
 }
