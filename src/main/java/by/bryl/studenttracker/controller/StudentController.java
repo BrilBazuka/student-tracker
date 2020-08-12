@@ -31,16 +31,16 @@ public class StudentController {
 
     private IStudentService studentService;
 
+    @Autowired
+    public StudentController(IStudentService studentService) {
+        this.studentService = studentService;
+    }
+
     // removes leading and trailing whitespace
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
-    }
-
-    @Autowired
-    public StudentController(IStudentService studentService) {
-        this.studentService = studentService;
     }
 
     @GetMapping("/list")
